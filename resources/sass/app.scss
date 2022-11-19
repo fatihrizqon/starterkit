@@ -1,0 +1,13 @@
+@import "../../node_modules/tailwind-color-palette/scss/tailwind-color-palette";
+@import "../../node_modules/bootstrap/scss/_functions";
+@import "../../node_modules/bootstrap/scss/_variables";
+@import "../../node_modules/bootstrap/scss/_mixins";
+@import "./navbar";
+@import "./font";
+@import "./button";
+@import "./input";
+@import "./extras";
+@import "./card";
+@import "./theme-colors";
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

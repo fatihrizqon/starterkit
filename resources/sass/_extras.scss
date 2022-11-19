@@ -1,0 +1,35 @@
+#navbar.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    animation-duration: 1s;
+    animation-name: smooth;
+    transition: visibility 0s 2s, opacity 2s linear;
+}
+
+@keyframes smooth {
+    from {
+        top: -25%;
+    }
+    to {
+        top: 0%;
+    }
+}
+
+// Animation to fade in the dropdown menus
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+// Assigning the above animation to all dropdown menus
+.dropdown-menu {
+    &.show {
+        -webkit-animation: fadeIn 0.3s alternate; /* Safari 4.0 - 8.0 */
+        animation: fadeIn 0.3s alternate;
+    }
+}
