@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendVerifyEmailNotificationJob;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password), 
         ]);
 
         dispatch(new SendVerifyEmailNotificationJob($user));

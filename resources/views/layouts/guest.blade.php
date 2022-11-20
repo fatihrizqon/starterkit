@@ -9,7 +9,7 @@
         <meta name="description"
             content="Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.">
         <link rel="canonical" href="{{ env('APP_URL') }}" />
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ env('APP_NAME', 'Laravel') }}</title>
 
         <!-- Fonts Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"

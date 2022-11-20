@@ -18,6 +18,12 @@
         </span>
         @endif
 
+        @if(session('danger'))
+        <span class="text-danger fs-sm">
+            {{ session('danger') }}
+        </span>
+        @endif
+
         <form class="mt-3" method="POST" action="{{ route('login') }}">
             @csrf
 

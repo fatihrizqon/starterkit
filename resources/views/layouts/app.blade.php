@@ -9,11 +9,13 @@
         <meta name="description"
             content="Laravel is a web application framework with expressive, elegant syntax. We’ve already laid the foundation — freeing you to create without sweating the small things.">
         <link rel="canonical" href="{{ env('APP_URL') }}" />
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ env('APP_NAME', 'Laravel') }}</title>
 
         <!-- AdminLTE -->
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="{{ asset('admin-lte/plugins/fontawesome-free/css/all.min.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- iCheck -->
         <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
         <!-- Theme style -->
@@ -28,13 +30,13 @@
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
             <header>
-                <!-- <Navbar> -->
+                <!-- Navbar -->
                 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
                     <!-- Left -->
                     <ul class="navbar-nav ml-4">
                         <li class="nav-item">
                             <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-                                <i class="fas fa-bars"></i>
+                                <i class="fa-solid fa-bars"></i>
                             </a>
                         </li>
                     </ul>
@@ -63,12 +65,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                                <i class="fas fa-expand-arrows-alt"></i>
+                                <i class="fa-solid fa-expand-arrows-alt"></i>
                             </a>
                         </li>
                     </ul>
                 </nav>
-                <!-- </Navbar> -->
             </header>
 
             <main>
@@ -80,53 +81,66 @@
                         <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
                     </a>
 
-                    <!-- <Sidebar> -->
+                    <!-- Sidebar -->
                     <div class="sidebar">
-                        <!-- <Sidenav> -->
+                        <!-- Sidenav -->
                         <nav class="mt-2">
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                                 data-accordion="false">
+                                @can('admin')
                                 <li class="nav-header">Admin Panel</li>
                                 <li class="nav-item">
                                     <a href="{{ route('dashboard') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                        <i class="nav-icon fa-solid fa-tachometer-alt"></i>
                                         <p>Dashboard</p>
                                     </a>
                                 </li>
+                                @endcan
+                                <li class="nav-item">
+                                    <a href="{{ route('dashboard.account_settings') }}" class="nav-link">
+                                        <i class="nav-icon fa-solid fa-screwdriver-wrench"></i>
+                                        <p>Account Settings</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a type="submit" class="nav-link text-danger"
+                                            onclick="event.preventDefault(); this.closest('form').submit();">
+                                            <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+                                            <p>Logout</p>
+                                        </a>
+                                    </form>
+                                </li>
                             </ul>
                         </nav>
-                        <!-- </Sidenav> -->
                     </div>
-                    <!-- </Sidebar> -->
                 </aside>
 
                 <div class="content-wrapper">
-                    <!-- <Content Header> -->
+                    <!-- Content Header -->
                     <div class="content-header">
                         <div class="container-fluid">
                             <div class="row mb-2">
                                 <div class="col-sm-12">
-                                    <!-- <Breadcumbs> -->
+                                    <!-- Breadcumbs -->
                                     <ol class="breadcrumb float-sm-left">
                                         <li class="breadcrumb-item active">
                                             <a class="text-decoration-none tw-text-gray-600"
                                                 href="{{ route('dashboard') }}">Dashboard</a>
                                         </li>
                                     </ol>
-                                    <!-- </Breadcumbs> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- </Content Header> -->
 
-                    <!-- <Main Content> -->
+                    <!-- Main Content -->
                     <section class="content">
                         <div class="container-fluid">
                             {{ $slot }}
                         </div>
                     </section>
-                    <!-- </Main Content> -->
                 </div>
             </main>
 

@@ -28,11 +28,10 @@
             <div class="offcanvas-body align-items-center">
                 <ul id="nav-items"
                     class="navbar-nav justify-content-end align-items-start align-items-md-center flex-grow-1 animate slideIn">
-                    <!-- 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('/') }}">Home</a>
                     </li>
-                    
+                    <!-- 
                     <li class="nav-item dropdown">
                         <a class="nav-link text-muted" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -44,13 +43,33 @@
                         </ul>
                     </li>
                     -->
-
+                    @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-muted" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <!-- <li><a class="dropdown-item" href="#">Action</a></li> -->
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="dropdown-item text-danger" href="#!"
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                        Logout
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('register') }}">Register</a>
                     </li>
+                    @endauth
                 </ul>
             </div>
         </div>
